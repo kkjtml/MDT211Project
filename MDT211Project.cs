@@ -438,9 +438,7 @@ public class TastyJourneyApp
         foreach (User followingUser in followingList)
         {
             ShowUserFeed(followingUser);
-            Console.WriteLine();
         }
-        Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
     }
 
     public void RegisterUser(string userName)
@@ -489,8 +487,6 @@ public class InterfaceTastyJourneyApp
     public void Menu(User user, FoodInventory foodInventory, TastyJourneyApp tastyjourneyApp)
     {
         Console.WriteLine();
-        Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
-        Console.WriteLine();
         Console.WriteLine("Welcome to TastyJourney App!");
         Console.WriteLine($"Hello, {user.Username}!");
         Console.WriteLine("Menu:");
@@ -507,21 +503,25 @@ public class InterfaceTastyJourneyApp
         switch (choice)
         {
             case "1":
+                Console.WriteLine();
                 Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
                 tastyjourneyApp.ShowUserProfile(user);
                 break;
 
             case "2":
+                Console.WriteLine();
                 Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
                 AddPostFromUserInput(user, foodInventory, tastyjourneyApp);
                 break;
 
             case "3":
+                Console.WriteLine();
                 Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
                 tastyjourneyApp.ShowUserFeed(user);
                 break;
 
             case "4":
+                Console.WriteLine();
                 Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
                 tastyjourneyApp.ShowUserFeedOfFollowedUsers(user);
                 break;
@@ -790,9 +790,9 @@ public class InterfaceTastyJourneyApp
                     {
                         Console.Write("Write food detail: ");
                         string foodDetail = Console.ReadLine();
+                        Console.WriteLine("Shipping cost is 20 baht");
                         foodInventory.OrderFood(foodnameshopping, quantity, foodDetail);
                         float total = foodInventory.GetTotal();
-                        Console.WriteLine("Shipping cost is 20 baht");
                         while (true)
                         {
                             Console.WriteLine("Confirm your order");
@@ -855,6 +855,8 @@ public class InterfaceTastyJourneyApp
                 Console.WriteLine("Please input Y or N");
                 continue;
             }
+            Console.WriteLine();
+            Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
             break;
         }
 
@@ -925,10 +927,9 @@ public class Program
         //Show Order Food
         InterfaceTastyJourneyApp interfaceTastyJourneyApp = new InterfaceTastyJourneyApp();
         interfaceTastyJourneyApp.FoodShoppingFromUser(user1, foodInventory, tastyjourneyapp);
-        interfaceTastyJourneyApp.FoodShoppingFromUser(user1, foodInventory, tastyjourneyapp);
+        interfaceTastyJourneyApp.FoodShoppingFromUser(user2, foodInventory, tastyjourneyapp);
 
         //Show Input Menu And Create Post
-        interfaceTastyJourneyApp.Menu(user1, foodInventory, tastyjourneyapp);
         interfaceTastyJourneyApp.Menu(user1, foodInventory, tastyjourneyapp);
         interfaceTastyJourneyApp.Menu(user1, foodInventory, tastyjourneyapp);
         interfaceTastyJourneyApp.Menu(user1, foodInventory, tastyjourneyapp);
