@@ -52,19 +52,26 @@ public class FoodInventory
 {
     private Dictionary<string, Food> _food = new Dictionary<string, Food>();
     public int Quantity { get; set; } //จำนวนอาหาร
-    private string FoodDetail { get; set; } //เช่น เผ็ด,ไม่เผ็ด
+    private string FoodDetail { get; set; } //เช่น ไม่หวาน
     public float Total;
 
     public void AddFoodInInventory(string foodName, float foodPrice)
     {
+        Console.WriteLine();
+        Console.WriteLine($"⊱┄┄┄ Add food to the food inventory┄┄┄⊰");
+        Console.WriteLine();
         if (_food.ContainsKey(foodName))
         {
             Console.WriteLine($"Food: {foodName} , Price: {foodPrice} baht has already been added to the food inventory");
+            Console.WriteLine();
+            Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
             return;
         }
         Food food = new Food(foodName, foodPrice);
         _food.Add(foodName, food);
         Console.WriteLine($"Food: {foodName} , Price: {foodPrice} baht added to the food inventory");
+        Console.WriteLine();
+        Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
     }
 
     public void AddFoodInPost(string foodName, float foodPrice)
@@ -81,16 +88,24 @@ public class FoodInventory
 
     public void SearchFoodName(string foodName)
     {
+        Console.WriteLine();
+        Console.WriteLine($"⊱┄┄┄ Search for food ┄┄┄⊰");
+        Console.WriteLine();
+        Console.WriteLine($"Finding food {foodName} ...");
         foreach (var checkfood in _food)
         {
             if (_food.ContainsKey(foodName))
             {
                 Food food = _food[foodName];
-                Console.WriteLine($"Found food: {foodName} , Price: {food.FoodPrice} baht");
+                Console.WriteLine($"Found food {foodName} , Price: {food.FoodPrice} baht");
+                Console.WriteLine();
+                Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
                 return;
             }
         }
-        Console.WriteLine($"Food: {foodName} isn't in the food inventory");
+        Console.WriteLine($"Not found food {foodName}");
+        Console.WriteLine();
+        Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
     }
 
     public bool Checkfood(string foodName)
@@ -114,12 +129,14 @@ public class FoodInventory
 
     public void OrderFood(string foodName, float quantity, string foodDetail)
     {
-
+        Console.WriteLine();
         foreach (var checkfood in _food)
         {
             if (_food.ContainsKey(foodName))
             {
                 Food food = _food[foodName];
+                Console.WriteLine("┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄");
+                Console.WriteLine("⊱┄┄┄ Order summary ┄┄┄⊰");
                 Console.WriteLine($"Food: {foodName}");
                 Console.WriteLine($"Price: {food.FoodPrice} baht");
                 Console.WriteLine($"Quantity: {quantity}");
@@ -128,16 +145,22 @@ public class FoodInventory
                 float ShippingCost = 20;
                 Total = (quantity * food.FoodPrice) + ShippingCost;
                 Console.WriteLine($"Total: {Total} baht");
+                Console.WriteLine("┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄");
+                Console.WriteLine();
                 return;
             }
         }
+        Console.WriteLine("┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄");
         Console.WriteLine($"Food: {foodName} isn't in the food inventory");
+        Console.WriteLine("┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄");
+        Console.WriteLine();
     }
 
     public float GetTotal()
     {
         return Total;
     }
+
     public bool Payment(float total, float pay)
     {
         bool check = true;
@@ -167,8 +190,7 @@ public class TextPost : Post
     public override void Display()
     {
         Console.WriteLine($"@{Author.Username} | Follower {Author.NumOfFollower} | Following {Author.NumOfFollowing}");
-        Console.WriteLine("Added text post: ");
-        Console.WriteLine($"{Content}");
+        Console.WriteLine($"Added Text Post ✎ : ❝{Content}❞ ");
     }
 }
 
@@ -179,8 +201,7 @@ public class ImagePostWithText : Post
     public override void Display()
     {
         Console.WriteLine($"@{Author.Username} | Follower {Author.NumOfFollower} | Following {Author.NumOfFollowing}");
-        Console.WriteLine("Added image post:");
-        Console.WriteLine($"{Content}");
+        Console.WriteLine($"Added Image Post ✎ : ❝{Content}❞ ");
         Console.WriteLine($"Image URL: {ImageURL}.jpg");
     }
 }
@@ -192,8 +213,7 @@ public class VideoPostWithText : Post
     public override void Display()
     {
         Console.WriteLine($"@{Author.Username} | Follower {Author.NumOfFollower} | Following {Author.NumOfFollowing}");
-        Console.WriteLine("Added video post: ");
-        Console.WriteLine($"{Content}");
+        Console.WriteLine($"Added Video Post ✎ : ❝{Content}❞ ");
         Console.WriteLine($"Video URL: {VideoURL}.mp4");
     }
 }
@@ -209,8 +229,7 @@ public class ImagePostWithTextAndFoodShopping : Post
     public override void Display()
     {
         Console.WriteLine($"@{Author.Username} | Follower {Author.NumOfFollower} | Following {Author.NumOfFollowing}");
-        Console.WriteLine("Added image post: ");
-        Console.WriteLine($"{Content}");
+        Console.WriteLine($"Added Image Post ✎ : ❝{Content}❞ ");
         Console.WriteLine($"Image URL: {ImageURL}.jpg");
         button.SimulateButtonFoodShopping();
         button.SimulateWindow();
@@ -229,8 +248,7 @@ public class VideoPostWithTextAndFoodShopping : Post
     public override void Display()
     {
         Console.WriteLine($"@{Author.Username} | Follower {Author.NumOfFollower} | Following {Author.NumOfFollowing}");
-        Console.WriteLine("Added video post: ");
-        Console.WriteLine($"{Content}");
+        Console.WriteLine($"Added Video Post ✎ : ❝{Content}❞ ");
         Console.WriteLine($"Video URL: {VideoURL}.mp4");
         button.SimulateButtonFoodShopping();
         button.SimulateWindow();
@@ -259,9 +277,15 @@ public class User
 
     public void FollowUser(User userToFollow)
     {
+        Console.WriteLine();
+        Console.WriteLine($"⊱┄┄┄ Follow ┄┄┄⊰");
+        Console.WriteLine();
         if (FollowList.Contains(userToFollow))
         {
-            Console.WriteLine($"{this.Username} has already follow {userToFollow.Username}");
+            Console.WriteLine($"@{this.Username} has already follow @{userToFollow.Username}");
+            Console.WriteLine($"@{this.Username} | follower {this.NumOfFollower} | following {this.NumOfFollowing}");
+            Console.WriteLine();
+            Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
             return;
         }
         FollowList.Add(userToFollow);
@@ -269,6 +293,8 @@ public class User
         userToFollow.NumOfFollower++;
         Console.WriteLine($"@{this.Username} follow @{userToFollow.Username}");
         Console.WriteLine($"@{this.Username} | follower {this.NumOfFollower} | following {this.NumOfFollowing}");
+        Console.WriteLine();
+        Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
     }
 
     public List<Post> FetchPublicPost()
@@ -379,60 +405,82 @@ public class TastyJourneyApp
                 ++postCount;
             }
         }
-        Console.WriteLine("-- Show " + viewer.Username + " feed ----");
+        Console.WriteLine();
+        Console.WriteLine($"⊱┄┄┄ Show {viewer.Username} feed ┄┄┄⊰");
+        Console.WriteLine();
         foreach (Post post in postToDisplayList)
         {
             post.Display();
+            Console.WriteLine();
         }
-        Console.WriteLine();
+        Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
     }
 
     public void ShowUserProfile(User userToDisplay)
     {
         List<Post> postToDisplayList = userToDisplay.FetchPublicPost();
-        Console.WriteLine("---- Show " + userToDisplay.Username + " profile ---");
+        Console.WriteLine();
+        Console.WriteLine($"⊱┄┄┄ Show {userToDisplay.Username} profile ┄┄┄⊰");
+        Console.WriteLine();
         foreach (Post post in postToDisplayList)
         {
             post.Display();
+            Console.WriteLine();
         }
-        Console.WriteLine();
+        Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
     }
 
     public void ShowUserFeedOfFollowedUsers(User viewer)
     {
         List<User> followingList = viewer.GetFollowList();
-
+        Console.WriteLine();
         Console.WriteLine($"Feed of users that {viewer.Username} is following:");
         foreach (User followingUser in followingList)
         {
             ShowUserFeed(followingUser);
             Console.WriteLine();
         }
+        Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
     }
 
     public void RegisterUser(string userName)
     {
+        Console.WriteLine();
+        Console.WriteLine($"⊱┄┄┄ Register ┄┄┄⊰");
+        Console.WriteLine();
         if (_userDictionary.ContainsKey(userName))
         {
-            Console.WriteLine("Username @" + userName + " already registered");
+            Console.WriteLine($"Username @{userName} already registered");
+            Console.WriteLine();
+            Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
             return;
         }
         User newUser = new User { Username = userName };
         _userDictionary.Add(userName, newUser);
-        Console.WriteLine("Register user @" + newUser.Username);
+        Console.WriteLine($"Register user @{newUser.Username}");
+        Console.WriteLine();
+        Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
     }
 
     public void SearchOtherUser(string userToSearch)
     {
+        Console.WriteLine();
+        Console.WriteLine($"⊱┄┄┄ Search for user ┄┄┄⊰");
+        Console.WriteLine();
+        Console.WriteLine($"Finding user @{userToSearch} ...");
         foreach (var searchuser in _userDictionary)
         {
             if (_userDictionary.ContainsKey(userToSearch))
             {
-                Console.WriteLine($"Found user: @{userToSearch}");
+                Console.WriteLine($"Found user @{userToSearch}");
+                Console.WriteLine();
+                Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
                 return;
             }
         }
-        Console.WriteLine($"Not found user: @{userToSearch}");
+        Console.WriteLine($"Not found user @{userToSearch}");
+        Console.WriteLine();
+        Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
     }
 }
 public class InterfaceTastyJourneyApp
@@ -440,6 +488,9 @@ public class InterfaceTastyJourneyApp
 
     public void Menu(User user, FoodInventory foodInventory, TastyJourneyApp tastyjourneyApp)
     {
+        Console.WriteLine();
+        Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
+        Console.WriteLine();
         Console.WriteLine("Welcome to TastyJourney App!");
         Console.WriteLine($"Hello, {user.Username}!");
         Console.WriteLine("Menu:");
@@ -456,39 +507,57 @@ public class InterfaceTastyJourneyApp
         switch (choice)
         {
             case "1":
+                Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
                 tastyjourneyApp.ShowUserProfile(user);
                 break;
 
             case "2":
+                Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
                 AddPostFromUserInput(user, foodInventory, tastyjourneyApp);
                 break;
 
             case "3":
+                Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
                 tastyjourneyApp.ShowUserFeed(user);
                 break;
 
             case "4":
+                Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
                 tastyjourneyApp.ShowUserFeedOfFollowedUsers(user);
                 break;
 
             case "5":
-                Console.Write("Enter food name to search: ");
+                Console.Write("Enter food to search: ");
                 string foodToSearch = Console.ReadLine();
+                Console.WriteLine();
+                Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
                 foodInventory.SearchFoodName(foodToSearch);
                 break;
 
             case "6":
-                Console.Write("Enter username to search: ");
+                Console.Write("Enter user to search: ");
                 string userToSearch = Console.ReadLine();
+                Console.WriteLine();
+                Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
                 tastyjourneyApp.SearchOtherUser(userToSearch);
                 break;
 
             case "7":
+                Console.WriteLine();
+                Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
+                Console.WriteLine();
                 Console.WriteLine("Logged out successfully");
+                Console.WriteLine();
+                Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
                 break;
 
             default:
+                Console.WriteLine();
+                Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
+                Console.WriteLine();
                 Console.WriteLine("Please choose a valid option");
+                Console.WriteLine();
+                Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
                 break;
         }
     }
@@ -497,6 +566,7 @@ public class InterfaceTastyJourneyApp
     {
         string visibilityInput;
         tastyjourneyApp.ShowUserProfile(user);
+        Console.WriteLine();
         Console.WriteLine($"Hello, {user.Username}! What's on your mind?");
         Console.WriteLine("1. Text Post");
         Console.WriteLine("2. Image Post with Text");
@@ -520,6 +590,8 @@ public class InterfaceTastyJourneyApp
                 {
                     Visibility visibility = (visibilityInput == "1") ? Visibility.PRIVATE : Visibility.PUBLIC;
                     user.AddTextPost(textContent, visibility);
+                    Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
+                    Console.WriteLine();
                     tastyjourneyApp.ShowUserProfile(user);
                 }
                 else
@@ -543,6 +615,8 @@ public class InterfaceTastyJourneyApp
                 {
                     Visibility visibility = (visibilityInput == "1") ? Visibility.PRIVATE : Visibility.PUBLIC;
                     user.AddImagePostWithText(imageContent, imageURL, visibility);
+                    Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
+                    Console.WriteLine();
                     tastyjourneyApp.ShowUserProfile(user);
                 }
                 else
@@ -566,6 +640,8 @@ public class InterfaceTastyJourneyApp
                 {
                     Visibility visibility = (visibilityInput == "1") ? Visibility.PRIVATE : Visibility.PUBLIC;
                     user.AddVideoPostWithText(videoContent, videoURL, visibility);
+                    Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
+                    Console.WriteLine();
                     tastyjourneyApp.ShowUserProfile(user);
                 }
                 else
@@ -586,10 +662,10 @@ public class InterfaceTastyJourneyApp
                 {
                     Console.Write("Write food: ");
                     string foodnameshopping = Console.ReadLine();
-                    Console.WriteLine("Finding food...");
                     foodInventory.Checkfood(foodnameshopping);
                     if (check_1 == foodInventory.Checkfood(foodnameshopping))
                     {
+                        Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
                         foodInventory.SearchFoodName(foodnameshopping);
                         float foodpriceshopping = foodInventory.GetFoodprice(foodnameshopping);
                         while (true)
@@ -603,6 +679,8 @@ public class InterfaceTastyJourneyApp
                             {
                                 Visibility visibility = (visibilityInput == "1") ? Visibility.PRIVATE : Visibility.PUBLIC;
                                 user.AddImagePostWithTextAndFoodShopping(imageContentWithFoodShopping, imageURLWithFoodShopping, foodnameshopping, foodpriceshopping, visibility);
+                                Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
+                                Console.WriteLine();
                                 tastyjourneyApp.ShowUserProfile(user);
                                 break;
                             }
@@ -635,10 +713,10 @@ public class InterfaceTastyJourneyApp
                 {
                     Console.Write("Write food: ");
                     string foodnameshopping = Console.ReadLine();
-                    Console.WriteLine("Finding food...");
                     foodInventory.Checkfood(foodnameshopping);
                     if (check_2 == foodInventory.Checkfood(foodnameshopping))
                     {
+                        Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
                         foodInventory.SearchFoodName(foodnameshopping);
                         float foodpriceshopping = foodInventory.GetFoodprice(foodnameshopping);
                         while (true)
@@ -652,6 +730,8 @@ public class InterfaceTastyJourneyApp
                             {
                                 Visibility visibility = (visibilityInput == "1") ? Visibility.PRIVATE : Visibility.PUBLIC;
                                 user.AddVideoPostWithTextAndFoodShopping(videoContentWithFoodShopping, videoURLWithFoodShopping, foodnameshopping, foodpriceshopping, visibility);
+                                Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
+                                Console.WriteLine();
                                 tastyjourneyApp.ShowUserProfile(user);
                                 break;
                             }
@@ -671,11 +751,15 @@ public class InterfaceTastyJourneyApp
                     }
                     break;
                 }
+                Console.WriteLine();
+                Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
                 break;
 
             default:
                 Console.WriteLine("Invalid choice.");
                 Console.WriteLine("Please choose 1 or 2 or 3 or 4 or 5 or 6");
+                Console.WriteLine();
+                Console.WriteLine("╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸╸");
                 break;
         }
     }
@@ -684,6 +768,7 @@ public class InterfaceTastyJourneyApp
         tastyjourneyApp.ShowUserFeed(user);
         while (true)
         {
+            Console.WriteLine();
             Console.WriteLine("Do you want this food?");
             Console.WriteLine("Shipping cost is 20 baht for every item!");
             Console.Write("Y/N: ");
@@ -694,6 +779,7 @@ public class InterfaceTastyJourneyApp
                 Console.Write("Write food: ");
                 string foodnameshopping = Console.ReadLine();
                 Button button = new Button();
+                Console.WriteLine();
                 button.SimulateWindow();
                 while (true)
                 {
@@ -715,9 +801,13 @@ public class InterfaceTastyJourneyApp
                             yesorno = Console.ReadLine();
                             if (yesorno == "Y")
                             {
-                                Console.WriteLine("Payment your order");
+                                Console.WriteLine();
+                                Console.WriteLine("┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄");
+                                Console.WriteLine("⊱┄┄┄ Payment your Order ┄┄┄⊰");
                                 Console.Write("Write amount you pay: ");
                                 float pay = float.Parse(Console.ReadLine());
+                                Console.WriteLine("┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄");
+                                Console.WriteLine();
                                 foodInventory.Payment(total, pay);
                                 bool check_3 = true;
                                 if (check_3 == foodInventory.Payment(total, pay))
@@ -785,20 +875,20 @@ public class Program
         tastyjourneyapp.RegisterUser(user1.Username);
         tastyjourneyapp.RegisterUser(user2.Username);
         tastyjourneyapp.RegisterUser(user3.Username);
-        tastyjourneyapp.RegisterUser(user3.Username); //RegisterUser ซ้ำ
+        tastyjourneyapp.RegisterUser(user3.Username); //registerUser ซ้ำ
 
         //Show Follow Other User And Show Follower , Following
         user1.FollowUser(user2);
         user2.FollowUser(user1);
         user3.FollowUser(user1);
         user3.FollowUser(user2);
-        user1.FollowUser(user2); //Follow ซ้ำ
+        user1.FollowUser(user2); //follow ซ้ำ
 
         //Show Search User
         tastyjourneyapp.SearchOtherUser(user2.Username);
         tastyjourneyapp.SearchOtherUser("jangwonyoung"); //not found
 
-        //Show Add Food In Inventory
+        //Show Add food to the food inventory
         FoodInventory foodInventory = new FoodInventory();
         foodInventory.AddFoodInInventory("Milk Tea", 60);
         foodInventory.AddFoodInInventory("Strawberry Cheesecake", 150);
@@ -817,26 +907,26 @@ public class Program
 
         //Show Create Post
         user3.AddTextPost("Of five people, three must pay a price...", Visibility.PUBLIC);
-        user1.AddImagePostWithText("Happyyyyy", "antonsmile", Visibility.PRIVATE);
+        user1.AddImagePostWithText("Happyyyyy", "antonsmile", Visibility.PRIVATE); //private
         user2.AddVideoPostWithText("With Anton", "Dance", Visibility.PUBLIC);
-        user1.AddImagePostWithTextAndFoodShopping("Review Strawberry Cheesecake🍓🧀🍰 100/10 It tastes great!😍❤ click it!", "StrawberryCheesecake", "Strawberry Cheesecake", 150, Visibility.PUBLIC);
-        user2.AddVideoPostWithTextAndFoodShopping("I love pudding", "Pudding", "Pudding", 120, Visibility.PUBLIC);
+        user1.AddImagePostWithTextAndFoodShopping("Strawberry Cheesecake🍓🍰 100/10 click it!", "StrawberryCheesecake", "Strawberry Cheesecake", 150, Visibility.PUBLIC);
+        user2.AddVideoPostWithTextAndFoodShopping("I love pudding🍮", "Pudding", "Pudding", 120, Visibility.PUBLIC);
 
         //Show User Profile
         tastyjourneyapp.ShowUserProfile(user1);
         tastyjourneyapp.ShowUserProfile(user2);
         tastyjourneyapp.ShowUserProfile(user3);
 
-        //Show User Feed 
+        //Show User Feed
         tastyjourneyapp.ShowUserFeed(user1);
         tastyjourneyapp.ShowUserFeed(user2);
         tastyjourneyapp.ShowUserFeed(user3);
 
-        //Show Input Menu And Create Post
-        InterfaceTastyJourneyApp interfaceTastyJourneyApp = new InterfaceTastyJourneyApp();
-        interfaceTastyJourneyApp.Menu(user1, foodInventory, tastyjourneyapp);
-
         //Show Order Food
+        InterfaceTastyJourneyApp interfaceTastyJourneyApp = new InterfaceTastyJourneyApp();
         interfaceTastyJourneyApp.FoodShoppingFromUser(user1, foodInventory, tastyjourneyapp);
+
+        //Show Input Menu And Create Post
+        interfaceTastyJourneyApp.Menu(user1, foodInventory, tastyjourneyapp);
     }
 }
