@@ -25,7 +25,7 @@ public class Button : EventHandlerBase
     public event Notify OnButtonClicked;
     public void SimulateButtonFoodShopping()
     {
-        Console.WriteLine("[Button]: Food Shopping");
+        Console.WriteLine("[Button]: Food Shopping 🍽︎ ");
         Console.WriteLine("[Button]: Button Clicked");
         OnButtonClicked?.Invoke();
     }
@@ -202,7 +202,7 @@ public class ImagePostWithText : Post
     {
         Console.WriteLine($"@{Author.Username} | Follower {Author.NumOfFollower} | Following {Author.NumOfFollowing}");
         Console.WriteLine($"Added Image Post ✎ : ❝{Content}❞ ");
-        Console.WriteLine($"Image URL: {ImageURL}.jpg");
+        Console.WriteLine($"Image URL 📷︎ : {ImageURL}.jpg");
     }
 }
 
@@ -214,7 +214,7 @@ public class VideoPostWithText : Post
     {
         Console.WriteLine($"@{Author.Username} | Follower {Author.NumOfFollower} | Following {Author.NumOfFollowing}");
         Console.WriteLine($"Added Video Post ✎ : ❝{Content}❞ ");
-        Console.WriteLine($"Video URL: {VideoURL}.mp4");
+        Console.WriteLine($"Video URL 📹︎ : {VideoURL}.mp4");
     }
 }
 
@@ -230,7 +230,7 @@ public class ImagePostWithTextAndFoodShopping : Post
     {
         Console.WriteLine($"@{Author.Username} | Follower {Author.NumOfFollower} | Following {Author.NumOfFollowing}");
         Console.WriteLine($"Added Image Post ✎ : ❝{Content}❞ ");
-        Console.WriteLine($"Image URL: {ImageURL}.jpg");
+        Console.WriteLine($"Image URL 📷︎ : {ImageURL}.jpg");
         button.SimulateButtonFoodShopping();
         button.SimulateWindow();
         foodInventory.AddFoodInPost(FoodNameShopping, FoodPriceShopping);
@@ -249,7 +249,7 @@ public class VideoPostWithTextAndFoodShopping : Post
     {
         Console.WriteLine($"@{Author.Username} | Follower {Author.NumOfFollower} | Following {Author.NumOfFollowing}");
         Console.WriteLine($"Added Video Post ✎ : ❝{Content}❞ ");
-        Console.WriteLine($"Video URL: {VideoURL}.mp4");
+        Console.WriteLine($"Video URL 📹︎ : {VideoURL}.mp4");
         button.SimulateButtonFoodShopping();
         button.SimulateWindow();
         foodInventory.AddFoodInPost(FoodNameShopping, FoodPriceShopping);
@@ -907,8 +907,8 @@ public class Program
 
         //Show Create Post
         user3.AddTextPost("Of five people, three must pay a price...", Visibility.PUBLIC);
-        user1.AddImagePostWithText("Happyyyyy", "antonsmile", Visibility.PRIVATE); //private
-        user2.AddVideoPostWithText("With Anton", "Dance", Visibility.PUBLIC);
+        user1.AddImagePostWithText("Happyyyyy😀", "antonsmile", Visibility.PRIVATE); //private
+        user2.AddVideoPostWithText("With Anton🙌", "Dance", Visibility.PUBLIC);
         user1.AddImagePostWithTextAndFoodShopping("Strawberry Cheesecake🍓🍰 100/10 click it!", "StrawberryCheesecake", "Strawberry Cheesecake", 150, Visibility.PUBLIC);
         user2.AddVideoPostWithTextAndFoodShopping("I love pudding🍮", "Pudding", "Pudding", 120, Visibility.PUBLIC);
 
@@ -925,8 +925,17 @@ public class Program
         //Show Order Food
         InterfaceTastyJourneyApp interfaceTastyJourneyApp = new InterfaceTastyJourneyApp();
         interfaceTastyJourneyApp.FoodShoppingFromUser(user1, foodInventory, tastyjourneyapp);
+        interfaceTastyJourneyApp.FoodShoppingFromUser(user1, foodInventory, tastyjourneyapp);
 
         //Show Input Menu And Create Post
+        interfaceTastyJourneyApp.Menu(user1, foodInventory, tastyjourneyapp);
+        interfaceTastyJourneyApp.Menu(user1, foodInventory, tastyjourneyapp);
+        interfaceTastyJourneyApp.Menu(user1, foodInventory, tastyjourneyapp);
+        interfaceTastyJourneyApp.Menu(user1, foodInventory, tastyjourneyapp);
+        interfaceTastyJourneyApp.Menu(user1, foodInventory, tastyjourneyapp);
+        interfaceTastyJourneyApp.Menu(user1, foodInventory, tastyjourneyapp);
+        interfaceTastyJourneyApp.Menu(user1, foodInventory, tastyjourneyapp);
+        interfaceTastyJourneyApp.Menu(user1, foodInventory, tastyjourneyapp);
         interfaceTastyJourneyApp.Menu(user1, foodInventory, tastyjourneyapp);
     }
 }
