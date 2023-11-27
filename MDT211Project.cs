@@ -937,6 +937,5 @@ public class Program
         interfaceTastyJourneyApp.Menu(user1, foodInventory, tastyjourneyapp);
         interfaceTastyJourneyApp.Menu(user1, foodInventory, tastyjourneyapp);
         interfaceTastyJourneyApp.Menu(user1, foodInventory, tastyjourneyapp);
-        interfaceTastyJourneyApp.Menu(user1, foodInventory, tastyjourneyapp);
     }
 }
